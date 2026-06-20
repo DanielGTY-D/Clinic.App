@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Clinic.App.Pages.RegisterPatientPage"
+             Title="Registrar Paciente"
+             BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#121212}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Título -->
+            <Label Text="Registro de Paciente"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,20" />
+
+            <!-- CURP -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="CURP *" FontAttributes="Bold" TextColor="#333333" />
+                <Entry x:Name="CurpEntry"
+                       Placeholder="Ej: GATD040412HDFRRNA7"
+                       MaxLength="18"
+                       Keyboard="Text"
+                       TextTransform="Uppercase" />
+                <Label x:Name="CurpError"
+                       Text="El CURP debe tener 18 caracteres"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <!-- Fecha de Nacimiento -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Fecha de Nacimiento *" FontAttributes="Bold" TextColor="#333333" />
+                <DatePicker x:Name="BirthDatePicker"
+                            Format="dd/MM/yyyy" />
+                <Label x:Name="BirthDateError"
+                       Text="La fecha de nacimiento es requerida"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <!-- Género -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Género *" FontAttributes="Bold" TextColor="#333333" />
+                <Picker x:Name="GenderPicker"
+                        Title="Selecciona tu género">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Male</x:String>
+                            <x:String>Female</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Label x:Name="GenderError"
+                       Text="Selecciona un género"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <!-- Tipo de Sangre -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Tipo de Sangre *" FontAttributes="Bold" TextColor="#333333" />
+                <Picker x:Name="BloodGroupPicker"
+                        Title="Selecciona tu tipo de sangre">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>A+</x:String>
+                            <x:String>A-</x:String>
+                            <x:String>B+</x:String>
+                            <x:String>B-</x:String>
+                            <x:String>AB+</x:String>
+                            <x:String>AB-</x:String>
+                            <x:String>O+</x:String>
+                            <x:String>O-</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Label x:Name="BloodGroupError"
+                       Text="Selecciona tu tipo de sangre"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <!-- Alergias -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Alergias" FontAttributes="Bold" TextColor="#333333" />
+                <Editor x:Name="AllergiesEditor"
+                        Placeholder="Describe tus alergias o escribe 'Ninguna'"
+                        AutoSize="TextChanges"
+                        HeightRequest="80" />
+            </VerticalStackLayout>
+
+            <!-- Separador visual -->
+            <BoxView HeightRequest="1" 
+                     Color="#CCCCCC" 
+                     Margin="0,10" />
+
+            <!-- Contacto de Emergencia - Título -->
+            <Label Text="Contacto de Emergencia"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#2196F3"
+                   Margin="0,10,0,5" />
+
+            <!-- Nombre del Contacto -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Nombre del Contacto *" FontAttributes="Bold" TextColor="#333333" />
+                <Entry x:Name="EmergencyContactNameEntry"
+                       Placeholder="Ej: María López"
+                       Keyboard="Text" />
+                <Label x:Name="EmergencyContactNameError"
+                       Text="El nombre del contacto es requerido"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <!-- Teléfono del Contacto -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Número de Teléfono *" FontAttributes="Bold" TextColor="#333333" />
+                <Entry x:Name="EmergencyContactNumberEntry"
+                       Placeholder="Ej: 5561711577"
+                       Keyboard="Telephone"
+                       MaxLength="10" />
+                <Label x:Name="EmergencyContactNumberError"
+                       Text="Ingresa un número de 10 dígitos"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <!-- Botones -->
+            <Grid ColumnSpacing="10" Margin="0,20,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Text="Cancelar"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Clicked="OnCancelarClicked" />
+
+                <Button Grid.Column="1"
+                        Text="Guardar"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Clicked="OnGuardarClicked" />
+            </Grid>
+
+            <!-- Indicador de carga (oculto por defecto) -->
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="#2196F3"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Clinic.App.Pages.RegisterPage"
+             Title="RegisterPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Ingresa tus datos para registrarte"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="20"/>
+
+        <StackLayout Spacing="15" Padding="20">
+
+            <!-- Nombre -->
+            <StackLayout Spacing="5">
+                <Label Text="Nombre" 
+               FontAttributes="Bold"
+               FontSize="Small"
+               TextColor="Gray"/>
+                <Entry x:Name="EntryFirstName"
+               Placeholder="Ingresa tu nombre"
+               Keyboard="Text"/>
+            </StackLayout>
+
+            <!-- Apellido -->
+            <StackLayout Spacing="5">
+                <Label Text="Apellido" 
+               FontAttributes="Bold"
+               FontSize="Small"
+               TextColor="Gray"/>
+                <Entry x:Name="EntryLastName"
+               Placeholder="Ingresa tu apellido"
+               Keyboard="Text"/>
+            </StackLayout>
+
+            <!-- Email -->
+            <StackLayout Spacing="5">
+                <Label Text="Correo electrónico" 
+               FontAttributes="Bold"
+               FontSize="Small"
+               TextColor="Gray"/>
+                <Entry x:Name="EntryEmail"
+               Placeholder="ejemplo@correo.com"
+               Keyboard="Email"/>
+            </StackLayout>
+
+            <!-- Teléfono -->
+            <StackLayout Spacing="5">
+                <Label Text="Teléfono" 
+               FontAttributes="Bold"
+               FontSize="Small"
+               TextColor="Gray"/>
+                <Entry x:Name="EntryPhoneNumber"
+               Placeholder="5512345678"
+               Keyboard="Telephone"
+               MaxLength="10"/>
+            </StackLayout>
+
+            <!-- Contraseña -->
+            <StackLayout Spacing="5">
+                <Label Text="Contraseña" 
+               FontAttributes="Bold"
+               FontSize="Small"
+               TextColor="Gray"/>
+                <Entry x:Name="EntryPassword"
+               Placeholder="Ingresa tu contraseña"
+               IsPassword="True"/>
+            </StackLayout>
+
+            <!-- Botón de registro -->
+            <Button Text="Registrarme"
+            Clicked="OnRegisterClicked"
+            BackgroundColor="Blue"
+            TextColor="White"
+            CornerRadius="10"
+            Margin="0,20,0,0"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
