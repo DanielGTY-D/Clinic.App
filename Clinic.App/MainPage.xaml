@@ -24,15 +24,7 @@
            FontSize="16" FontAttributes="Bold"
            HorizontalOptions="Center"/>
 
-                <Label Text="No tienes citas próximas. Agenda una con tu médico."
-           FontSize="13" TextColor="Gray"
-           HorizontalTextAlignment="Center"/>
 
-                <Button Text="+ Agendar cita"
-            Clicked="OnAgendarClicked"
-            HorizontalOptions="Center"
-            Padding="16,10"/>
-            </StackLayout>
 
             <CollectionView x:Name="AppointmentsCollection">
                 <CollectionView.ItemTemplate>

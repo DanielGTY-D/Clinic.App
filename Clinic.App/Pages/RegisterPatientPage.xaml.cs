@@ -12,8 +12,8 @@ public partial class RegisterPatientPage : ContentPage
     public RegisterPatientPage(
         ClinicService clinicService,
         UserResponseModel user)
-    {
-        InitializeComponent();
+	{
+		InitializeComponent();
         _clinicService = clinicService;
         _user = user;
 

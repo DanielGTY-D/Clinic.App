@@ -23,7 +23,7 @@ namespace Clinic.App
 
         public async void GetAppointmentsByUserId()
         {
-            var appointments = await _clinicService.GetAppointmentsByUserId(_token);
+           var appointments = await _clinicService.GetAppointmentsByUserId(_token);
             try
             {
                 if (appointments.data.Count() == 0)
@@ -35,7 +35,7 @@ namespace Clinic.App
                 {
                     EmptyState.IsVisible = false;
                     AppointmentsCollection.IsVisible = true;
-                    AppointmentsCollection.ItemsSource = appointments.data;
+                AppointmentsCollection.ItemsSource = appointments.data;
                 }
 
             }

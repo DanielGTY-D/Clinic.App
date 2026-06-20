@@ -163,9 +163,9 @@
                                IsRunning="False"
                                IsVisible="False"
                                Color="#2196F3"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center" />
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
+    </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

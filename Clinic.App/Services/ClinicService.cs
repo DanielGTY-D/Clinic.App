@@ -13,6 +13,8 @@ namespace Clinic.App.Services
     {
         // Asegúrate de que este puerto sea el correcto donde corre tu API
         private string baseUrl = "http://10.0.2.2:5076/api";
+
+
         public async Task<(bool IsSucces, string message, LoginResponseModel? Data)> LoginUser(LoginModel model)
         {
             try
@@ -45,6 +47,18 @@ namespace Clinic.App.Services
 
         public async Task<(bool IsSuccess, string message, IEnumerable<AppointmentResponseModel>? data)> GetAppointmentsByUserId(string token)
         {
+            var handler = new JwtSecurityTokenHandler();
+
+            if (!handler.CanReadToken(token))
+                return (false, "Token no valido", null);
+
+            var jwtToken = handler.ReadJwtToken(token);
+
+            var userId = jwtToken.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return (false, "No se encontró el userId en el token", null);
+
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, $"{baseUrl}/appointments/my-appointments");
             request.Headers.Add("Authorization", $"Bearer {token}");
