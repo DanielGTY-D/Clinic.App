@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Clinic.App.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a submarine number ten" />
+
+            <Label
+                Text="Hello, World!"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Welcome to &#10;.NET Multi-platform App UI"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+
+            <CollectionView x:Name="AppointmentsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10" Padding="15" Stroke="LightGray" StrokeThickness="1">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="2,2" Radius="4" Opacity="0.3"/>
+                            </Border.Shadow>
+
+                            <Grid RowSpacing="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Paciente -->
+                                <StackLayout Grid.Row="0">
+                                    <Label 
+                                        Text="{Binding Patient.User.FirstName, StringFormat='👤 Paciente: {0}'}" 
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"/>
+                                </StackLayout>
+
+                                <!-- Doctor y Especialidad -->
+                                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                    <Label 
+                                        Text="{Binding Doctor.Employee.User.FirstName, StringFormat='🩺 Dr. {0}'}" 
+                                        FontSize="Small"
+                                        TextColor="Gray"/>
+                                    <Label 
+                                        Text=" - " 
+                                        FontSize="Small"
+                                        TextColor="Gray"/>
+                                    <Label 
+                                        Text="{Binding Doctor.Speciality.Name}" 
+                                        FontSize="Small"
+                                        TextColor="DarkBlue"/>
+                                </StackLayout>
+
+                                <!-- Fecha, Hora y Consultorio -->
+                                <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                    <Label 
+                                        Text="{Binding AppointmentDate, StringFormat='📅 {0:dd/MM/yyyy}'}" 
+                                        FontSize="Small"/>
+                                    <Label Text="  |  " FontSize="Small"/>
+                                    <Label 
+                                        Text="{Binding StartTime, StringFormat='🕐 {0}'}" 
+                                        FontSize="Small"/>
+                                    <Label Text="  |  " FontSize="Small"/>
+                                    <Label 
+                                        Text="{Binding ConsultingRoom.Number, StringFormat='🏥 Cons. {0}'}" 
+                                        FontSize="Small"/>
+                                </StackLayout>
+
+                                <!-- Estado de Pago -->
+                                <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="0,5,0,0">
+                                    <BoxView 
+                                        WidthRequest="10" 
+                                        HeightRequest="10" 
+                                        CornerRadius="5"
+                                        VerticalOptions="Center">
+                                        <BoxView.Triggers>
+                                            <DataTrigger TargetType="BoxView" Binding="{Binding IsPaid}" Value="true">
+                                                <Setter Property="Color" Value="Green"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="BoxView" Binding="{Binding IsPaid}" Value="false">
+                                                <Setter Property="Color" Value="Red"/>
+                                            </DataTrigger>
+                                        </BoxView.Triggers>
+                                    </BoxView>
+                                    <Label 
+                            FontSize="Small"
+                            Margin="5,0,0,0"
+                            VerticalOptions="Center">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding IsPaid}" Value="true">
+                                                <Setter Property="Text" Value="Pagado"/>
+                                                <Setter Property="TextColor" Value="Green"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding IsPaid}" Value="false">
+                                                <Setter Property="Text" Value="Pendiente de pago"/>
+                                                <Setter Property="TextColor" Value="Red"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
